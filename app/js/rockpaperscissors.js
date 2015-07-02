@@ -1,11 +1,12 @@
 ////////////////////////////////////////////////
 /*   Provided Code - Please Don't Edit   */
 ////////////////////////////////////////////////
-'use strict';
+//'use strict';
 
 function getInput() {
-    console.log("Please choose either 'rock', 'paper', or 'scissors'.")
-    return prompt();
+    console.log("Please choose either 'rock', 'paper', or 'scissors'.");
+    var a = prompt();
+    return a;
 }
 function randomPlay() {
     var randomNumber = Math.random();
@@ -32,7 +33,7 @@ function getComputerMove(move) {
     // Write an expression that operates on a variable called `move`
     // If a `move` has a value, your expression should evaluate to that value.
     // However, if `move` is not specified / is null, your expression should equal `randomPlay()`.
-    return move || getInput();
+    return move || randomPlay();
 }
 
 function getWinner(playerMove,computerMove) {
@@ -45,19 +46,19 @@ function getWinner(playerMove,computerMove) {
 
     } else if (playerMove === "rock" && computerMove === "scissors") {
         winner = 'player';
-        return playerWins;
+        return winner;
 
     } else if (playerMove === 'scissors' && computerMove === 'paper') {
         winner = 'player';
-        return playerWins;
+        return winner;
 
-    } else (playerMove === 'paper' && computerMove === 'rock') {
+    } else if (playerMove === 'paper' && computerMove === 'rock') {
         winner = 'player';
-        return playerWins;
+        return winner;
 
     } else {
         winner = 'computer';
-        return computerWins;
+        return winner;
     }
     return winner;
 }
@@ -66,8 +67,29 @@ function playToFive() {
     console.log("Let's play Rock, Paper, Scissors");
     var playerWins = 0;
     var computerWins = 0;
+    var whoWins;
+    var iP;
+    var iC;
     // Write code that plays 'Rock, Paper, Scissors' until either the player or the computer has won five times.
-    /* YOUR CODE HERE */
-    return [playerWins, computerWins];
+    while (playerWins < 5 && computerWins < 5){
+        iP = getPlayerMove();
+        iC = getComputerMove();
+        console.log("Player Choice: " + iP, "Computer Choice: " + iC);
+        whoWins = getWinner(iP, iC);
+    
+        if (whoWins === 'player') {
+            console.log(whoWins + " has won!");
+            playerWins += 1;
+            
+        } else if (whoWins === 'computer') {
+            console.log(whoWins + " has won!");
+            computerWins += 1;
+            
+        } else {
+            console.log('You have tied!');
+        }
+        
+        console.log("Player: " + playerWins, "Computer: " + computerWins);
+    }
+    return [playerWins, computerWins]; 
 }
-
